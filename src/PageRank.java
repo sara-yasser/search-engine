@@ -3,16 +3,20 @@ public class PageRank {
  
  
  static void fillGraph(int size, int[][] graph) {           // modify this to the real matrix
+	 int count = 0;
+	 int[] data = {0,0,1,1,1,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,1,0,0,0};
 	 for(int i = 0; i < size; i++)
 	 {
 		 for(int j = 0; j < size; j++)
 		 {
-			 if(i == j)
-				 graph[i][j] = 0; //to solve the problem of link nt pointing to anything for now
-			 else if(j*i/3*i % 2 == 0)
-				 graph[i][j] = 1;
-			 else
-				 graph[i][j] = 0;
+			 graph[i][j] = data[count];
+			 count++;
+//			 if(i == j)
+//				 graph[i][j] = 0; //to solve the problem of link nt pointing to anything for now
+//			 else if(j % 2 == 0 && (i != 1 || i != 2))
+//				 graph[i][j] = 1;
+//			 else
+//				 graph[i][j] = 0;
 		 }
 	 }
  }
@@ -36,11 +40,12 @@ public class PageRank {
 	 
 	 fillGraph(5,graph);
 	 
-	 //initial itr
+	 
 	 for(int i = 0; i < rank0.length; i++)
 	 {
+		//initial itr all ranks are equal in the 0's iteration
 		 rank0[i] = 1/(float)rank0.length;
-		 // how many pages each page refer to
+		 // how many pages each page refer to "calculating the number of outgoing arrows from each page"
 		 int count = 0;
 		 for(int j = 0; j < rank0.length; j++)
 		 {
@@ -50,6 +55,7 @@ public class PageRank {
 		 L[i] = count;
 	 }
 	 
+	 // printing the matrix
 	 for(int i = 0; i < rank0.length; i++)
 	 {
 		 for(int j = 0; j < rank0.length; j++)
@@ -59,56 +65,30 @@ public class PageRank {
 		 System.out.print("\n");
 	 }
 	 
-	 int itr = 0;
-	 float lampda = 0.5f;
-	 for(int i = 0; i < 20; i++)
+	 float lampda = 0.85f;
+	 //-----------------------------------------------------------------------------------
+	 for(int i = 0; i < 6; i++)
 	 {
-		 if(itr%2 == 0)
+		 for(int j = 0; j < rank0.length; j++)
 		 {
-			 for(int j = 0; j < rank0.length; j++)
+			 float pr = 0;
+			 for(int k = 0; k < rank0.length; k++)
 			 {
-				 float pr = 0;
-				 for(int k = 0; k < rank0.length; k++)
+				 if(graph[k][j] == 1)
 				 {
-					 if(graph[k][j] == 1)
-					 {
-						 pr = pr + (rank0[k]/L[k]);
-					 }
+					 pr = pr + (rank0[k]/L[k]);
 				 }
-				 rank1[j] = pr;
-	//			 rank1[j] = (1-lampda)*rank0[j]+lampda*pr;
+			 }
+//			 rank1[j] = pr;
+			 rank1[j] = (1-lampda)+lampda*pr;
+//			 rank1[j] = (1-lampda)*rank0[j]+lampda*pr;
 //				 System.out.println(rank1[j]);
-			 }
-			 normalize(rank1);
 		 }
-		 
-		 else
-		 {
-			 for(int j = 0; j < rank0.length; j++)
-			 {
-				 float pr = 0;
-				 for(int k = 0; k < rank0.length; k++)
-				 {
-					 if(graph[k][j] == 1)
-					 {
-						 pr = pr + (rank1[k]/L[k]);
-//						 System.out.println("pr"+pr);
-					 }
-				 }
-				 rank0[j] = pr;
-//				 System.out.println(rank0[j]);
-	//			 rank1[j] = (1-lampda)*rank0[j]+lampda*pr;
-			 }
-			 normalize(rank0);
-		 }
-		 
-		 itr++;
+//			 normalize(rank1);
+		 rank0 = rank1;
 	 }
 	 for(int j = 0; j < rank0.length; j++)
 	 {
-		 if(itr%2 == 0)
-			 System.out.println(rank0[j]);
-		 else
 			 System.out.println(rank1[j]);
 	 }
 	 
