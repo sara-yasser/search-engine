@@ -1,0 +1,3 @@
+https://en.wikipedia.org/wiki/Tomato
+https://www.tutorialspoint.com/java/util/java_util_scanner.htm
+https://www.geeksforgeeks.org/map-entry-interface-java-example
