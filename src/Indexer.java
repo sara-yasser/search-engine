@@ -43,6 +43,7 @@ public class Indexer
          entry.print();//.getValue().print();
     //}
          indexer.printDocumentsUrl();
+         indexer.printWordsDictionary();
     }
 	 public void getDocumentsURLs() throws IOException 
 	 {
@@ -162,8 +163,6 @@ public class Indexer
 	 }
 	 
 	 public void printDocumentsUrl() {
-//		 Map<Integer, String> documentsUrl = documentsURLs;
-
 		 try {
 		      FileWriter myWriterDocumentsURLs = new FileWriter("documentsURLs.txt");
 		      
@@ -172,6 +171,35 @@ public class Indexer
 		      }
 		      
 		      myWriterDocumentsURLs.close();
+		      System.out.println("Successfully wrote to the file.");
+		 	} catch (IOException e) {
+		      System.out.println("An error occurred.");
+		      e.printStackTrace();
+		    }
+	 }
+	 
+	 public void printWordsDictionary() {
+		 wordValue w = new wordValue();
+		 Map<Integer, List<Float> > tdfDictionary;
+		 try {
+		      FileWriter myWriterWordsDictionary = new FileWriter("wordsDictionary.txt");
+		      
+		      for (Map.Entry<String, wordValue> entry : wordsDictionary.entrySet()) {
+		    	  w = entry.getValue();
+		    	  myWriterWordsDictionary.write(entry.getKey() +" ");  //write string"the word"
+		    	  // writing word value
+		    	  tdfDictionary = w.tdfDictionary;
+		    	  myWriterWordsDictionary.write(w.idf +" "+ tdfDictionary.size() +" ");      // write idf and #urls in it
+		    	  for (Map.Entry<Integer, List<Float> > entry2 : tdfDictionary.entrySet()) {
+		    		  // writing the index then priority list
+		    		  myWriterWordsDictionary.write(entry2.getKey() +" "+ entry2.getValue().get(0) +" "
+		    				  + entry2.getValue().get(1) +" "
+		    				  + entry2.getValue().get(2) +" "
+		    				  + entry2.getValue().get(3) +" ");
+		    	  }
+		      }
+		      
+		      myWriterWordsDictionary.close();
 		      System.out.println("Successfully wrote to the file.");
 		 	} catch (IOException e) {
 		      System.out.println("An error occurred.");
