@@ -54,10 +54,15 @@ public class QueryProcessor {
 	
 	public void runRanker(Map<String, wordValue> wordsDictionary) {
 		getDocuments(wordsDictionary);
-		List<Integer> rankedIndicies;
-		Relevance r = new Relevance();
-		rankedIndicies = r.ranker(this.wordsDictionary);
-		System.out.println(rankedIndicies); 
+		if(this.wordsDictionary.isEmpty()) {
+			System.out.println("no result"); 
+		}
+		else {
+			List<Integer> rankedIndicies;
+			Relevance r = new Relevance();
+			rankedIndicies = r.ranker(this.wordsDictionary);
+			System.out.println(rankedIndicies); 
+		}
 	}
 	
 	public static void main(String[] args) throws IOException {
