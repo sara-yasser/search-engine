@@ -15,9 +15,9 @@ import javax.swing.text.html.HTML;
 
 public class Indexer 
 {
-    private Map<Integer, String> documentsURLs;
+    public Map<Integer, String> documentsURLs;
     private Map<Integer, Set<String> > documentsDictionary;
-    private Map<String, wordValue> wordsDictionary;
+    public Map<String, wordValue> wordsDictionary;
     HTMLParser htmlDoc ;
     
     public Indexer()
@@ -42,8 +42,8 @@ public class Indexer
    		 System.out.println("word value : ");*/
          entry.print();//.getValue().print();
     //}
-         indexer.printDocumentsUrl();
-         indexer.printWordsDictionary();
+//         indexer.printDocumentsUrl();
+//         indexer.printWordsDictionary();
     }
 	 public void getDocumentsURLs() throws IOException 
 	 {
@@ -162,48 +162,53 @@ public class Indexer
 		 return occurrences/ totalSize; 
 	 }
 	 
-	 public void printDocumentsUrl() {
-		 try {
-		      FileWriter myWriterDocumentsURLs = new FileWriter("documentsURLs.txt");
-		      
-		      for (Map.Entry<Integer, String> entry : documentsURLs.entrySet()) {
-		    	  myWriterDocumentsURLs.write(entry.getKey() +" "+ entry.getValue() +" ");
-		      }
-		      
-		      myWriterDocumentsURLs.close();
-		      System.out.println("Successfully wrote to the file.");
-		 	} catch (IOException e) {
-		      System.out.println("An error occurred.");
-		      e.printStackTrace();
-		    }
-	 }
-	 
-	 public void printWordsDictionary() {
-		 wordValue w = new wordValue();
-		 Map<Integer, List<Float> > tdfDictionary;
-		 try {
-		      FileWriter myWriterWordsDictionary = new FileWriter("wordsDictionary.txt");
-		      
-		      for (Map.Entry<String, wordValue> entry : wordsDictionary.entrySet()) {
-		    	  w = entry.getValue();
-		    	  myWriterWordsDictionary.write(entry.getKey() +" ");  //write string"the word"
-		    	  // writing word value
-		    	  tdfDictionary = w.tdfDictionary;
-		    	  myWriterWordsDictionary.write(w.idf +" "+ tdfDictionary.size() +" ");      // write idf and #urls in it
-		    	  for (Map.Entry<Integer, List<Float> > entry2 : tdfDictionary.entrySet()) {
-		    		  // writing the index then priority list
-		    		  myWriterWordsDictionary.write(entry2.getKey() +" "+ entry2.getValue().get(0) +" "
-		    				  + entry2.getValue().get(1) +" "
-		    				  + entry2.getValue().get(2) +" "
-		    				  + entry2.getValue().get(3) +" ");
-		    	  }
-		      }
-		      
-		      myWriterWordsDictionary.close();
-		      System.out.println("Successfully wrote to the file.");
-		 	} catch (IOException e) {
-		      System.out.println("An error occurred.");
-		      e.printStackTrace();
-		    }
-	 }
+	 //=====================================================================================================
+	 //----------------------------- writing data to files for testing -------------------------------------
+	 //=====================================================================================================
+//	 public void printDocumentsUrl() {
+//		 try {
+//		      FileWriter myWriterDocumentsURLs = new FileWriter("documentsURLs.txt");
+//		      
+//		      for (Map.Entry<Integer, String> entry : documentsURLs.entrySet()) {
+//		    	  myWriterDocumentsURLs.write(entry.getKey() +" "+ entry.getValue() +" ");
+//		      }
+//		      
+//		      myWriterDocumentsURLs.close();
+//		      System.out.println("Successfully wrote to the file.");
+//		 	} catch (IOException e) {
+//		      System.out.println("An error occurred.");
+//		      e.printStackTrace();
+//		    }
+//	 }
+//	 
+//	 public void printWordsDictionary() {
+//		 wordValue w = new wordValue();
+//		 Map<Integer, List<Float> > tdfDictionary;
+//		 try {
+//		      FileWriter myWriterWordsDictionary = new FileWriter("wordsDictionary.txt");
+//		      
+//		      myWriterWordsDictionary.write(wordsDictionary.size() +" ");  // writing number of words in the dictionary
+//		      for (Map.Entry<String, wordValue> entry : wordsDictionary.entrySet()) {
+//		    	  w = entry.getValue();
+//		    	  myWriterWordsDictionary.write(entry.getKey() +" ");  //write string"the word"
+//		    	  // writing word value
+//		    	  tdfDictionary = w.tdfDictionary;
+//		    	  myWriterWordsDictionary.write(w.idf +" "+ tdfDictionary.size() +" ");      // write idf and #urls in it
+//		    	  for (Map.Entry<Integer, List<Float> > entry2 : tdfDictionary.entrySet()) {
+//		    		  // writing the index then priority list
+//		    		  myWriterWordsDictionary.write(entry2.getKey() +" "
+//		    				  + entry2.getValue().get(0) +" "
+//		    				  + entry2.getValue().get(1) +" "
+//		    				  + entry2.getValue().get(2) +" "
+//		    				  + entry2.getValue().get(3) +" ");
+//		    	  }
+//		      }
+//		      
+//		      myWriterWordsDictionary.close();
+//		      System.out.println("Successfully wrote to the file.");
+//		 	} catch (IOException e) {
+//		      System.out.println("An error occurred.");
+//		      e.printStackTrace();
+//		    }
+//	 }
 }
