@@ -11,11 +11,11 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Relevance {
 
-	List<String> words;
-	int size;
-	public Relevance (List<String> words) {
-		this.words = words;
-		this.size = words.size();
+//	List<String> words;
+//	int size;
+	public Relevance () {
+//		this.words = words;
+//		this.size = words.size();
 	}
 	
 	//------------------------------------------------------------------------------------------------------------------
@@ -86,9 +86,11 @@ public class Relevance {
 		int index;
 		float tf;
 		float tf_idf;
-		for(int i = 0; i < this.size; i++)  // loop on every word in the query
+		for (Entry<String, wordValue> entry2 : wordsDictionary.entrySet())
+//		for(int i = 0; i < this.size; i++)  // loop on every word in the query
 		{
-			wordVal = wordsDictionary.get(words.get(i));
+//			wordVal = wordsDictionary.get(words.get(i));
+			wordVal = wordsDictionary.get(entry2.getKey());
 			idf = wordVal.idf;
 			tdfDictionary = wordVal.tdfDictionary;
 			for (Entry<Integer, List<Float>> entry : tdfDictionary.entrySet())  // iterate on priority list
