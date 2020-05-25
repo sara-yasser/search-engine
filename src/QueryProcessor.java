@@ -3,12 +3,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Scanner;
-import java.util.Set;
-import java.io.File;
-import java.io.FileNotFoundException;
 
-import org.jsoup.Jsoup;
 
 
 public class QueryProcessor {
@@ -72,10 +67,9 @@ public class QueryProcessor {
     	indexer.getDocumentsURLs();
     	indexer.Indexing(indexer.documentsURLs);
     	
-		String s = "uploaded results golden halfed energy";
+		String s = "uploaded results golden halfed energy parameters methods";
 		QueryProcessor qp = new QueryProcessor(s, indexer.documentsURLs);
 		List<String> q = qp.query;
-//		qp.getDataFromDatabase();
 		for(int i = 0; i < q.size(); i++) {
 			System.out.println(q.get(i)); 
 		}

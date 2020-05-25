@@ -1,3 +1,5 @@
 https://en.wikipedia.org/wiki/Tomato
 https://www.tutorialspoint.com/java/util/java_util_scanner.htm
 https://www.geeksforgeeks.org/map-entry-interface-java-example
+https://www.geeksforgeeks.org/hashmap-containskey-method-in-java/
+https://www.geeksforgeeks.org/arraylist-array-conversion-java-toarray-methods/
