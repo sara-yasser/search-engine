@@ -100,7 +100,7 @@ public class Indexer
 					 float idf = 1;//getIdf(documentsURLs,word);
 					 Integer totalSize = fullText.size();
 					 Integer occurrences = Collections.frequency(fullText,word);
-					 float tdf = occurrences/ totalSize;
+					 float tdf = (float)occurrences/ totalSize;
 					// float tdf =  0;//getTDF(entry.getValue(), word);
 					 ////	 
 					 priorityList = new ArrayList();

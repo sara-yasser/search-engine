@@ -11,12 +11,15 @@ public class QueryProcessor {
 	public Map<String, wordValue> wordsDictionary;
 	public Map<Integer, String> documentsURLs;
 	
-	public QueryProcessor(String searchQuery, Map<Integer, String> documentsURLs) throws IOException {
+	public QueryProcessor(String searchQuery, Map<Integer, String> documentsURLs) throws IOException { //remove string 
 		this.query = splitAndStam(searchQuery);
 		this.documentsURLs = documentsURLs;
-    	this.wordsDictionary = new LinkedHashMap<String, wordValue>();;
+    	this.wordsDictionary = new LinkedHashMap<String, wordValue>();
 	}
 	
+	ArrayList<String> runQueryProcessor(String searchQuery){
+		return null;
+	}
 	// method to get documents contains words in the query
 	public void getDocuments(Map<String, wordValue> wordsDictionary) { // takes map from indexer for now
 		for(int i = 0; i < query.size(); i++) {
